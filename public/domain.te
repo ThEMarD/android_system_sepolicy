@@ -490,10 +490,6 @@ neverallow * exec_type:dir_file_class_set mounton;
 # Nothing should be writing to files in the rootfs, except recovery.
 neverallow { domain -recovery } rootfs:file { create write setattr relabelto append unlink link rename };
 
-# Restrict context mounts to specific types marked with
-# the contextmount_type attribute.
-neverallow * {fs_type -contextmount_type -sdcard_posix_contextmount_type}:filesystem relabelto;
-
 # Ensure that context mount types are not writable, to ensure that
 # the write to /system restriction above is not bypassed via context=
 # mount to another type.
